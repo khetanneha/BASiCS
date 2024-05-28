@@ -161,7 +161,7 @@ NumericVector Rgig(const int n,
 {
   NumericVector samps(n);
   /* special case which is basically a gamma distribution */
-  if ((chi < ZTOL) & (lambda > 0.0)) {
+  if ((chi < ZTOL) && (lambda > 0.0)) {
     int i;
     for (i = 0; i < n; i++) {
       samps(i) = R::rgamma(lambda, 2.0/psi);
@@ -170,7 +170,7 @@ NumericVector Rgig(const int n,
   }
   
   /* special cases which is basically an inverse gamma distribution */
-  if ((psi < ZTOL) & (lambda < 0.0)) { 
+  if ((psi < ZTOL) && (lambda < 0.0)) { 
     int i;
     for (i = 0; i < n; i++) {
       samps(i) = 1.0/R::rgamma(0.0-lambda, 2.0/chi);
@@ -354,8 +354,8 @@ arma::vec DegubInd(arma::vec ind,
                    std::string const& param)
 {
   for (int i=0; i < q; i++) {
-    if( arma::is_finite(log_aux(i)) & arma::is_finite(y(i)) ) {
-      if((log(u(i)) < log_aux(i)) & (y(i) > threshold)) { ind(i) = 1; }
+    if( arma::is_finite(log_aux(i)) && arma::is_finite(y(i)) ) {
+      if((log(u(i)) < log_aux(i)) && (y(i) > threshold)) { ind(i) = 1; }
       else{ind(i) = 0;}            
     }
     else {

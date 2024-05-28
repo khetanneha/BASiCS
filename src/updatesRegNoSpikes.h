@@ -136,7 +136,7 @@ arma::mat muUpdateRegNoSpikes(
       ) * exponent;
       
     // ACCEPT REJECT
-    if ((log(u(iAux)) < log_aux(iAux)) & (mu1(iAux) > mintol)) {
+    if ((log(u(iAux)) < log_aux(iAux)) && (mu1(iAux) > mintol)) {
       ind(iAux) = 1;
     } else{
       ind(iAux) = 0; mu1(iAux) = mu0(iAux);

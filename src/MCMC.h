@@ -337,7 +337,7 @@ Rcpp::List BASiCS_MCMCcpp(
     }
     
     // STORAGE OF DRAWS
-    if((i%Thin==0) & (i>=Burn)) {      
+    if((i%Thin==0) && (i>=Burn)) {      
       mu.col(i/Thin - Burn/Thin) = muAux.col(0); 
       delta.col(i/Thin - Burn/Thin) = deltaAux.col(0); 
       phi.col(i/Thin - Burn/Thin) = phiAux;
@@ -355,7 +355,7 @@ Rcpp::List BASiCS_MCMCcpp(
     }
     
     // PRINT IN CONSOLE SAMPLED VALUES FOR FEW SELECTED PARAMETERS
-    if((i%(2*Thin) == 0) & (PrintProgress == 1)) {
+    if((i%(2*Thin) == 0) && (PrintProgress == 1)) {
       CurrentIter(i, N);
       Rcout << "mu (gene 1): " << muAux(0,0) << std::endl; 
       Rcout << "delta (gene 1): " << deltaAux(0,0) << std::endl; 

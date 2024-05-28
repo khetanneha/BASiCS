@@ -380,7 +380,7 @@ Rcpp::List BASiCS_MCMCcppReg(
     V1 = (inv_V0 * globalExponent) + X.t() * diagmat(lambdaAux) * X;
     VAux = inv(V1);
 
-    if ((det(V1) != 0) & all(arma::eig_sym(sigma2Aux * VAux) > 0)) {
+    if ((det(V1) != 0) && all(arma::eig_sym(sigma2Aux * VAux) > 0)) {
       mAux = X.t() * (lambdaAux % log(deltaAux.col(0))) + (InvVm0 * globalExponent);
       mAux = VAux*mAux;
       
@@ -454,7 +454,7 @@ Rcpp::List BASiCS_MCMCcppReg(
     }
     
     // STORAGE OF DRAWS
-    if((i%Thin==0) & (i>=Burn)) {      
+    if((i%Thin==0) && (i>=Burn)) {      
       mu.col(i/Thin - Burn/Thin) = muAux.col(0); 
       delta.col(i/Thin - Burn/Thin) = deltaAux.col(0); 
       phi.col(i/Thin - Burn/Thin) = phiAux;
@@ -478,7 +478,7 @@ Rcpp::List BASiCS_MCMCcppReg(
     }
     
     // PRINT IN CONSOLE SAMPLED VALUES FOR FEW SELECTED PARAMETERS
-    if((i%(2*Thin) == 0) & (PrintProgress == 1)) {
+    if((i%(2*Thin) == 0) && (PrintProgress == 1)) {
       CurrentIter(i, N);
       Rcout << "mu (gene 1): " << muAux(0,0) << std::endl; 
       Rcout << "delta (gene 1): " << deltaAux(0,0) << std::endl; 
